@@ -192,10 +192,12 @@ int grain::saveMFEM_meshFile(std::string filename, GrainMesh *mesh)
     fout<<"# TETRAHEDRON = 4"<<std::endl;                          // <--На 4 строчках выше и на 1 ниже представлена справка о
     fout<<"# CUBE        = 5"<<std::endl;                          // типах геометрии
     fout<<"#"<<std::endl;
+    fout<<""<<std::endl;
     fout<<"dimension"<<std::endl; //Размерность
     fout<<"2"<<std::endl;
     fout<<""<<std::endl;
     fout<<"elements"<<std::endl;
+    
     
      int mTetraCount = mesh->getTetraCount();
      std::vector<vec4i>* mTetra = mesh->getTetra();
