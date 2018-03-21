@@ -180,9 +180,19 @@ int grain::saveEleFile(std::string filename, GrainMesh *mesh)
 int grain::saveMFEM_meshFile(std::string filename, GrainMesh *mesh)
 {
     std::ofstream fout(filename);
-    fout<<"MFEM mesh v1.0"<<std::endl;
+    fout<<"MFEM mesh v1.0"<<std::endl; //Инормация для MFEM, из которой он узнает, какого формата файла меша
     fout<<""<<std::endl;
-    fout<<"dimension"<<std::endl;
+    fout<<"#"<<std::endl;                                          // Строчки, которые начинаются с # обрабатываются
+    fout<<"# MFEM Geometry Types (see mesh/geom.hpp):"<<std::endl; // библиотекой как комментарии.
+    fout<<"#"<<std::endl;                                          // В начале описания файла меша, у сеток формата .mesh
+    fout<<"# POINT       = 0"<<std::endl;                          // всегда есть информация которая представлена на строчках,
+    fout<<"# SEGMENT     = 1"<<std::endl;                          // параллельных этим комментариям. В них говорится, что
+    fout<<"# TRIANGLE    = 2"<<std::endl;                          // больше информации можно найти в файле geom.hpp
+    fout<<"# SQUARE      = 3"<<std::endl;                          // непосредственно сам файл находится в папке с библиотекой.
+    fout<<"# TETRAHEDRON = 4"<<std::endl;                          // <--На 4 строчках выше и на 1 ниже представлена справка о
+    fout<<"# CUBE        = 5"<<std::endl;                          // типах геометрии
+    fout<<"#"<<std::endl;
+    fout<<"dimension"<<std::endl; //Размерность
     fout<<"2"<<std::endl;
     fout<<""<<std::endl;
     fout<<"elements"<<std::endl;
