@@ -10,5 +10,6 @@ namespace grain
     int saveNodeFile(std::string filename, GrainMesh * mesh);
 	int saveFaceFile(std::string filename, GrainMesh * mesh);
     int saveEleFile(std::string filename, GrainMesh * mesh);
+    int saveMFEM_meshFile(std::string filename, GrainMesh *mesh);
 }
 

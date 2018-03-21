@@ -177,3 +177,85 @@ int grain::saveEleFile(std::string filename, GrainMesh *mesh)
 	fout.close();
 	return 0;
 }
+int grain::saveMFEM_meshFile(std::string filename, GrainMesh *mesh)
+{
+    std::ofstream fout(filename);
+    fout<<"MFEM mesh v1.0"<<std::endl;
+    fout<<""<<std::endl;
+    fout<<"dimension"<<std::endl;
+    fout<<"2"<<std::endl;
+    fout<<""<<std::endl;
+    fout<<"elements"<<std::endl;
+    /*
+     int mTetraCount = mesh->getTetraCount();
+     std::vector<vec4i>* mTetra = mesh->getTetra();
+     std::vector<char>* mTetraLabels = mesh->getTetraLabels();
+     bool marker2 = false;
+     if (mTetraLabels->size() == mTetra->size())
+     marker2 = true;
+     
+     fout << mTetraCount << std::endl;
+     for (int i = 0; i < mTetraCount; i++)
+     {
+     fout << i+1 << " " <<"2";
+     if (marker2)
+     fout << " " << (int)mTetraLabels->at(i) << " ";
+     fout<< mTetra->at(i).x << " "
+     << mTetra->at(i).y << " "
+     << mTetra->at(i).z << " "
+     << mTetra->at(i).w<<std::endl;
+     }
+     */
+    fout<<"1"<<std::endl;
+    fout<<"1 2 1 3 0"<<std::endl;
+    fout<<""<<std::endl;
+    fout <<"boundary"<<std::endl;
+    
+    
+    int mTrianglesCount = mesh->getTrianglesCount();
+    std::vector<vec3i>* mTriangles = mesh->getTriangles();
+    std::vector<char>* mTrianglesLabels = mesh->getTrianglesLabels();
+    bool marker1 = false;
+    if (mTrianglesLabels->size() == mTriangles->size())
+        marker1 = true;
+    
+    fout << mTrianglesCount;
+    fout <<std::endl;
+    
+    for (int i = 0; i < mTrianglesCount; i++)
+    {
+        fout << i+1 << " " << "2" << " "
+        << mTriangles->at(i).x << " "
+        << mTriangles->at(i).y << " "
+        << mTriangles->at(i).z;
+        if (marker1)
+            fout << " " << (int)mTrianglesLabels->at(i) << "\n";
+        else
+            fout << "\n";
+    }
+    fout <<std::endl;
+    int mPointsCount = mesh->getVerticesCount();
+    std::vector<vec3d>* mPoints = mesh->getVertices();
+    std::vector<char>* mPointsLabels = mesh->getVerticesLabels();
+    bool marker = false;
+    if (mPointsLabels->size() == mPoints->size())
+        marker = true;
+    
+    fout <<"vertices"<<std::endl;
+    fout << mPointsCount<<std::endl;
+    fout <<"3"<<std::endl;
+    
+    for (int i = 0; i < mPointsCount; i++)
+    {
+        fout<< mPoints->at(i).x << " "
+        << mPoints->at(i).y << " "
+        << mPoints->at(i).z;
+        if (marker)
+            fout << " " << (int)mPointsLabels->at(i) << "\n";
+        else
+            fout << "\n";
+    }
+    fout.close();
+    return 0;
+}
+
