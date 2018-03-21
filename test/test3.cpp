@@ -13,10 +13,10 @@ int main(int argc, char** argv)
     // Geerate stub tetrahedron
     gmsh.makeStubTetra();
     
-    saveMFEM_meshFile("/Users/Dr.Iohanson/Desktop/grmesh.mesh", &gmsh);
+    saveMFEM_meshFile("/Users/Dr.Iohanson/Desktop/grmesh.mesh", &gmsh); //Здесь нужно написать путь к директории, в которой будет сохраняться файл сетки
+    
     // readNodeFile("/Users/Dr.Iohanson/Desktop/cube.node", &gmsh1);
     // saveFaceFile("/Users/Dr.Iohanson/Desktop/testFace.mesh", &gmsh1);
-    int a = 5;
     
     
     
