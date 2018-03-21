@@ -186,7 +186,7 @@ int grain::saveMFEM_meshFile(std::string filename, GrainMesh *mesh)
     fout<<"2"<<std::endl;
     fout<<""<<std::endl;
     fout<<"elements"<<std::endl;
-    /*
+    
      int mTetraCount = mesh->getTetraCount();
      std::vector<vec4i>* mTetra = mesh->getTetra();
      std::vector<char>* mTetraLabels = mesh->getTetraLabels();
@@ -205,9 +205,9 @@ int grain::saveMFEM_meshFile(std::string filename, GrainMesh *mesh)
      << mTetra->at(i).z << " "
      << mTetra->at(i).w<<std::endl;
      }
-     */
-    fout<<"1"<<std::endl;
-    fout<<"1 2 1 3 0"<<std::endl;
+    
+   // fout<<"1"<<std::endl;
+  //  fout<<"1 2 1 3 0"<<std::endl;
     fout<<""<<std::endl;
     fout <<"boundary"<<std::endl;
     
